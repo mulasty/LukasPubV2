@@ -1,5 +1,5 @@
-import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
+import { AnimatedText } from "@/components/AnimatedText";
+import { StorySection } from "@/components/StorySection";
 
 type ScheduleEntry = {
   day: string;
@@ -24,55 +24,50 @@ export function ContactSection({
   schedule
 }: ContactSectionProps) {
   return (
-    <section id="kontakt" className="py-20 sm:py-24">
-      <Container>
-        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="section-panel rounded-[2rem] p-7 sm:p-8">
-            <SectionHeading
-              eyebrow="Kontakt"
-              title="W centrum nocnego rytmu Łomży"
-              description="Tu znajdziesz szybki kontakt, adres i godziny otwarcia na wieczory z karaoke i tanecznym weekendem."
-            />
+    <StorySection id="kontakt" sceneClassName="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div data-reveal>
+        <p className="section-kicker">Kontakt</p>
+        <AnimatedText
+          as="h2"
+          text="Wszystko w jednym miejscu: adres, godziny i szybki telefon"
+          className="mt-4 font-display text-5xl uppercase leading-[0.9] text-white sm:text-6xl"
+        />
 
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-gold-300">Adres</p>
-                <p className="mt-3 text-base font-semibold text-white">{addressLine1}</p>
-                <p className="text-sm text-smoke">{addressLine2}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-gold-300">Telefon</p>
-                <a href={phoneHref} className="mt-3 block text-base font-semibold text-white hover:text-gold-300">
-                  {phoneDisplay}
-                </a>
-                <p className="text-sm text-smoke">Kliknij, aby zadzwonić lub potwierdzić rezerwację.</p>
-              </div>
-            </div>
-
-            <div className="mt-8 rounded-[1.75rem] border border-white/8 bg-white/2 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-gold-300">Godziny</p>
-              <div className="mt-4 space-y-3">
-                {schedule.map((item) => (
-                  <div key={item.day} className="flex items-center justify-between gap-4 border-b border-white/8 pb-3 last:border-b-0 last:pb-0">
-                    <span className="text-sm text-white">{item.day}</span>
-                    <span className="text-sm text-smoke">{item.hours}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="mt-8 grid gap-4">
+          <div className="glass-card rounded-[1.85rem] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Adres</p>
+            <p className="mt-4 text-lg font-semibold text-white">{addressLine1}</p>
+            <p className="text-sm text-white/72">{addressLine2}</p>
           </div>
-
-          <div className="overflow-hidden rounded-[2rem] border border-white/10">
-            <iframe
-              title="Mapa dojazdu do Lukas Pub Dance Club"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="min-h-[420px] w-full border-0"
-            />
+          <div className="glass-card rounded-[1.85rem] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Telefon</p>
+            <a href={phoneHref} className="mt-4 inline-flex text-lg font-semibold text-white hover:text-gold-300">
+              {phoneDisplay}
+            </a>
+          </div>
+          <div className="glass-card rounded-[1.85rem] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Godziny</p>
+            <div className="mt-4 space-y-3">
+              {schedule.map((item) => (
+                <div key={item.day} className="flex items-center justify-between gap-4 border-b border-white/8 pb-3 last:border-b-0 last:pb-0">
+                  <span className="text-sm text-white">{item.day}</span>
+                  <span className="text-sm text-white/68">{item.hours}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+
+      <div className="overflow-hidden rounded-[2.25rem] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.35)]" data-reveal>
+        <iframe
+          title="Mapa dojazdu do Lukas Pub Dance Club"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="min-h-[480px] w-full border-0"
+        />
+      </div>
+    </StorySection>
   );
 }

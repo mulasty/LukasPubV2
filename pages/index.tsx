@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRef } from "react";
 import business from "@/data/business.json";
 import events from "@/data/events.json";
 import gallery from "@/data/gallery.json";
@@ -6,15 +7,19 @@ import hours from "@/data/hours.json";
 import menuPreview from "@/data/menu-preview.json";
 import seo from "@/data/seo.json";
 import socials from "@/data/socials.json";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
+import { useScrollStory } from "@/hooks/useScrollStory";
 import { AboutSection } from "@/sections/AboutSection";
 import { ContactSection } from "@/sections/ContactSection";
 import { Footer } from "@/sections/Footer";
 import { GallerySection } from "@/sections/GallerySection";
 import { HeroSection } from "@/sections/HeroSection";
-import { MenuPreviewSection } from "@/sections/MenuPreviewSection";
+import { KaraokeHighlightSection } from "@/sections/KaraokeHighlightSection";
 import { ReservationSection } from "@/sections/ReservationSection";
 import { SocialMediaSection } from "@/sections/SocialMediaSection";
+import { UpcomingEventsSection } from "@/sections/UpcomingEventsSection";
+import { WeekendPartySection } from "@/sections/WeekendPartySection";
 import { WeeklyEventsSection } from "@/sections/WeeklyEventsSection";
 
 const phoneHref = `tel:${business.contact.phoneE164}`;
@@ -94,6 +99,9 @@ const structuredData = [
 ];
 
 export default function HomePage() {
+  const rootRef = useRef<HTMLElement>(null);
+  useScrollStory(rootRef);
+
   return (
     <>
       <Head>
@@ -115,7 +123,10 @@ export default function HomePage() {
         />
       </Head>
 
-      <main className="overflow-hidden">
+      <SmoothScroll />
+
+      <main ref={rootRef} className="story-shell overflow-hidden">
+        <div data-page-progress className="fixed left-0 right-0 top-0 z-[70] h-px origin-left bg-gradient-to-r from-gold-300 via-white to-ruby-500" />
         <HeroSection
           name={business.displayName}
           slogan={business.heroSlogan}
@@ -124,8 +135,15 @@ export default function HomePage() {
         />
         <AboutSection description={business.about.description} highlights={business.about.highlights} />
         <WeeklyEventsSection events={events.items} />
-        <MenuPreviewSection sections={menuPreview.sections} hasFullMenuAsset={menuPreview.hasFullMenuAsset} />
+        <KaraokeHighlightSection
+          title={events.items[0]?.title ?? "Karaoke Night"}
+          time={events.items[0]?.time ?? ""}
+          description={events.items[0]?.description ?? ""}
+          phoneHref={phoneHref}
+        />
+        <WeekendPartySection events={events.items.slice(1)} menuSections={menuPreview.sections} />
         <GallerySection items={gallery.items} />
+        <UpcomingEventsSection events={events.items} />
         <ReservationSection
           phoneDisplay={business.contact.phoneDisplay}
           phoneHref={phoneHref}

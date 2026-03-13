@@ -1,5 +1,4 @@
-import { Container } from "@/components/Container";
-import { SectionHeading } from "@/components/SectionHeading";
+import { StorySection } from "@/components/StorySection";
 import { TodoBlock } from "@/components/TodoBlock";
 
 type SocialLink = {
@@ -15,42 +14,34 @@ type SocialMediaSectionProps = {
 
 export function SocialMediaSection({ links }: SocialMediaSectionProps) {
   const activeLinks = links.filter((link) => link.status === "active");
-  const pendingLinks = links.filter((link) => link.status === "todo");
+  const pendingLinks = links.filter((link) => link.status !== "active");
 
   return (
-    <section id="social" className="py-20 sm:py-24">
-      <Container>
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="section-panel rounded-[2rem] p-7 sm:p-8">
-            <SectionHeading
-              eyebrow="Social Media"
-              title="Ruch z sociali ma trafiać prosto na wejście"
-              description="Strona jest przygotowana pod wejścia z Facebooka i Instagrama: szybki skan wydarzeń, numer do rezerwacji i czytelny kontakt bez zbędnych kliknięć."
-            />
-
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              {activeLinks.map((link) => (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-gold-400/35 px-6 py-4 text-center text-sm font-semibold text-white transition hover:border-gold-300 hover:text-gold-300"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+    <StorySection id="social" className="pt-0">
+      <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div data-reveal className="glass-card rounded-[2rem] p-6">
+          <p className="section-kicker">Social flow</p>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/82">
+            Strona jest przygotowana do ruchu z Facebooka i Instagrama: szybkie skanowanie programu, mocny CTA do rezerwacji i jedno miejsce z kontaktem.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {activeLinks.map((link) => (
+              <a key={link.platform} href={link.url} target="_blank" rel="noreferrer" className="cta-secondary">
+                {link.label}
+              </a>
+            ))}
           </div>
+        </div>
 
-          {pendingLinks.length > 0 ? (
+        {pendingLinks.length > 0 ? (
+          <div data-reveal>
             <TodoBlock
               title="TODO / Social"
-              items={pendingLinks.map((link) => `${link.platform}: dodać potwierdzony link do oficjalnego profilu.`)}
+              items={pendingLinks.map((link) => `${link.platform}: dodać potwierdzony oficjalny profil.`)}
             />
-          ) : null}
-        </div>
-      </Container>
-    </section>
+          </div>
+        ) : null}
+      </div>
+    </StorySection>
   );
 }
