@@ -15,6 +15,15 @@
     "phoneInternational": "+48 694 760 743",
     "phoneE164": "+48694760743"
   },
+  "heroMedia": {
+    "posterImage": "/images/hero.png",
+    "videos": [
+      "/videos/hero-01-disco-ball.mp4",
+      "/videos/hero-02-cocktail.mp4",
+      "/videos/hero-03-dancefloor.mp4",
+      "/videos/hero-04-club-night.mp4"
+    ]
+  },
   "about": {
     "description": "Lukas Pub Dance Club łączy swobodę pubu z energią klubu. To miejsce na wspólny start wieczoru, karaoke z ekipą i późniejsze wejście na parkiet, kiedy tempo robi się naprawdę nocne.",
     "highlights": [

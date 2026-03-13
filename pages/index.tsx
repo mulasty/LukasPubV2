@@ -132,6 +132,8 @@ export default function HomePage() {
           slogan={business.heroSlogan}
           description={business.heroDescription}
           phoneHref={phoneHref}
+          heroVideos={business.heroMedia.videos}
+          posterImage={business.heroMedia.posterImage}
         />
         <AboutSection description={business.about.description} highlights={business.about.highlights} />
         <WeeklyEventsSection events={events.items} />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { AnimatedText } from "@/components/AnimatedText";
 import { Container } from "@/components/Container";
 import { FloatingParticles } from "@/components/FloatingParticles";
@@ -8,9 +9,56 @@ type HeroSectionProps = {
   slogan: string;
   description: string;
   phoneHref: string;
+  heroVideos: string[];
+  posterImage: string;
 };
 
-export function HeroSection({ name, slogan, description, phoneHref }: HeroSectionProps) {
+export function HeroSection({
+  name,
+  slogan,
+  description,
+  phoneHref,
+  heroVideos,
+  posterImage
+}: HeroSectionProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [videoEnabled, setVideoEnabled] = useState(heroVideos.length > 0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setVideoEnabled(!prefersReducedMotion && heroVideos.length > 0);
+  }, [heroVideos.length]);
+
+  useEffect(() => {
+    if (!videoEnabled || !videoRef.current) {
+      return;
+    }
+
+    const playPromise = videoRef.current.play();
+    if (playPromise) {
+      playPromise.catch(() => {
+        setVideoEnabled(false);
+      });
+    }
+  }, [activeVideoIndex, videoEnabled]);
+
+  const handleVideoEnded = () => {
+    if (heroVideos.length <= 1) {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        void videoRef.current.play().catch(() => setVideoEnabled(false));
+      }
+      return;
+    }
+
+    setActiveVideoIndex((currentIndex) => (currentIndex + 1) % heroVideos.length);
+  };
+
   return (
     <section
       data-scene
@@ -19,17 +67,31 @@ export function HeroSection({ name, slogan, description, phoneHref }: HeroSectio
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(225,191,111,0.22),transparent_32%),radial-gradient(circle_at_20%_30%,rgba(183,59,83,0.24),transparent_28%),linear-gradient(180deg,rgba(5,6,10,0.3),rgba(5,6,10,0.95))]" />
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          data-hero-bg
-          className="absolute inset-0 scale-105 will-change-transform"
-        >
-          <Image
-            src="/images/hero.png"
-            alt="Wnętrze Lukas Pub Dance Club"
-            fill
-            priority
-            className="object-cover object-center opacity-85"
-          />
+        <div data-hero-bg className="absolute inset-0 scale-105 will-change-transform">
+          {videoEnabled ? (
+            <video
+              key={heroVideos[activeVideoIndex]}
+              ref={videoRef}
+              autoPlay
+              muted
+              playsInline
+              preload="metadata"
+              poster={posterImage}
+              onEnded={handleVideoEnded}
+              onError={() => setVideoEnabled(false)}
+              className="hero-video opacity-80"
+            >
+              <source src={heroVideos[activeVideoIndex]} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={posterImage}
+              alt="Wnetrze Lukas Pub Dance Club"
+              fill
+              priority
+              className="object-cover object-center opacity-85"
+            />
+          )}
         </div>
         <div
           data-parallax
@@ -72,6 +134,21 @@ export function HeroSection({ name, slogan, description, phoneHref }: HeroSectio
             </div>
             <div data-hero-copy className="will-change-transform">
               <p className="mt-5 max-w-xl text-sm leading-7 text-smoke sm:text-base">{description}</p>
+              {videoEnabled && heroVideos.length > 1 ? (
+                <div className="mt-5 flex flex-wrap items-center gap-2">
+                  {heroVideos.map((video, index) => (
+                    <button
+                      key={video}
+                      type="button"
+                      aria-label={`Przelacz film hero ${index + 1}`}
+                      onClick={() => setActiveVideoIndex(index)}
+                      className={`h-2.5 rounded-full transition-all ${
+                        index === activeVideoIndex ? "w-10 bg-gold-300" : "w-2.5 bg-white/35 hover:bg-white/60"
+                      }`}
+                    />
+                  ))}
+                </div>
+              ) : null}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="#rezerwacja" className="cta-primary">
                   Zarezerwuj stolik
