@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "src": "/images/hero.png",
+      "alt": "Wieczorny kadr wnętrza Lukas Pub Dance Club",
+      "highlight": true
+    },
+    {
+      "src": "/images/weekend-party.jpg",
+      "alt": "Weekendowa atmosfera i parkiet w Lukas Pub Dance Club"
+    },
+    {
+      "src": "/images/cocktails.jpg",
+      "alt": "Kolorowe koktajle podawane w lokalu"
+    },
+    {
+      "src": "/images/background.png",
+      "alt": "Nocny detal wizualny wykorzystany w oprawie strony"
+    }
+  ]
+}

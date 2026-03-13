@@ -1,0 +1,30 @@
+{
+  "timezone": "Europe/Warsaw",
+  "schedule": [
+    {
+      "dayLabel": "Czwartek",
+      "schemaDay": "https://schema.org/Thursday",
+      "opens": "18:00",
+      "closes": "23:00",
+      "displayHours": "18:00-23:00"
+    },
+    {
+      "dayLabel": "Piątek",
+      "schemaDay": "https://schema.org/Friday",
+      "opens": "18:00",
+      "closes": "01:00",
+      "displayHours": "18:00-01:00"
+    },
+    {
+      "dayLabel": "Sobota",
+      "schemaDay": "https://schema.org/Saturday",
+      "opens": "18:00",
+      "closes": "03:00",
+      "displayHours": "18:00-03:00"
+    }
+  ],
+  "notes": [
+    "Godziny pochodzą z publicznie listed hours przekazanych w briefie.",
+    "TODO: potwierdzić godziny wyjątków świątecznych i wydarzeń specjalnych."
+  ]
+}

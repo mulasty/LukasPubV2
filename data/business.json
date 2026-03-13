@@ -1,0 +1,28 @@
+{
+  "name": "Lukas pub - dance - club",
+  "displayName": "Lukas Pub Dance Club",
+  "heroSlogan": "Wieczory, które zaczynają się od drinka i kończą na parkiecie.",
+  "heroDescription": "Pub, dance club i karaoke venue w Łomży. W tygodniu karaoke, w weekend taneczny rytm, dobra energia i wieczory, na które wpada się ze znajomymi bez zbędnego planowania.",
+  "seoDescription": "Lukas Pub Dance Club w Łomży: karaoke w czwartek, dance party w piątek i club night w sobotę. Rezerwacje stolików i wieczory z klimatem w centrum nocnego życia.",
+  "location": {
+    "street": "Al. Legionów 60B",
+    "postalCode": "18-400",
+    "city": "Łomża",
+    "country": "Polska"
+  },
+  "contact": {
+    "phoneDisplay": "694 760 743",
+    "phoneInternational": "+48 694 760 743",
+    "phoneE164": "+48694760743"
+  },
+  "about": {
+    "description": "Lukas Pub Dance Club łączy swobodę pubu z energią klubu. To miejsce na wspólny start wieczoru, karaoke z ekipą i późniejsze wejście na parkiet, kiedy tempo robi się naprawdę nocne.",
+    "highlights": [
+      "Czwartkowe karaoke dla ekip, które wolą mikrofon od siedzenia przy stole.",
+      "Piątkowe i sobotnie noce z muzyką, tańcem i przestrzenią do spotkań.",
+      "Bar z koktajlami, klasykami i przekąskami, które pasują do długiego wieczoru.",
+      "Lokalny klimat Łomży bez sztucznego nadęcia i bez generycznego clubowego szablonu."
+    ]
+  },
+  "reservationText": "Rezerwacja telefoniczna to najszybszy sposób, żeby zaplanować wieczór ze znajomymi. Jeśli wybieracie się na karaoke albo weekendową imprezę, warto zadzwonić wcześniej i potwierdzić stolik."
+}

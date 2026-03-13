@@ -1,0 +1,27 @@
+{
+  "metaTitle": "Lukas Pub Dance Club | Pub, karaoke i klub w Łomży",
+  "metaDescription": "Lukas Pub Dance Club w Łomży. Karaoke w czwartek, dance party w piątek i club night w sobotę. Zadzwoń i zarezerwuj stolik na wieczór.",
+  "keywords": [
+    "pub Łomża",
+    "klub Łomża",
+    "karaoke Łomża",
+    "dance club Łomża",
+    "imprezy Łomża",
+    "rezerwacja stolika Łomża"
+  ],
+  "canonicalUrl": "",
+  "og": {
+    "title": "Lukas Pub Dance Club | Nocna energia Łomży",
+    "description": "Karaoke, parkiet i wieczory weekendowe w Łomży. Sprawdź wydarzenia i zarezerwuj stolik.",
+    "image": "/images/hero.png"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Lukas Pub Dance Club | Pub, karaoke i klub w Łomży",
+    "description": "Czwartkowe karaoke, piątkowe dance party i sobotni club night. Rezerwacje telefoniczne.",
+    "image": "/images/hero.png"
+  },
+  "notes": [
+    "TODO: uzupełnić canonicalUrl po podaniu docelowej domeny."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "day": "Czwartek",
+      "title": "Karaoke Night",
+      "time": "18:00-23:00",
+      "description": "Wieczór dla tych, którzy wpadają śpiewać, kibicować znajomym i złapać luźniejszy klimat przed weekendem. Dobra opcja na spontaniczne wyjście do miasta.",
+      "accent": "text-gold-300",
+      "startTimeForSchema": ""
+    },
+    {
+      "day": "Piątek",
+      "title": "Dance Party",
+      "time": "18:00-01:00",
+      "description": "Piątek w rytmie parkietu, spotkań i nocnej energii. Najlepszy moment, żeby zacząć weekend od drinka i zostać dłużej, niż planowaliście.",
+      "accent": "text-white",
+      "startTimeForSchema": ""
+    },
+    {
+      "day": "Sobota",
+      "title": "Club Night",
+      "time": "18:00-03:00",
+      "description": "Najmocniejszy wieczór tygodnia. Muzyka, taniec i klimat pełnego club night dla osób, które szukają w Łomży miejsca z nocnym tempem i żywą salą.",
+      "accent": "text-ruby-500",
+      "startTimeForSchema": ""
+    }
+  ]
+}

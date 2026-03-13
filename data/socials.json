@@ -1,0 +1,16 @@
+{
+  "links": [
+    {
+      "platform": "Facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/p/Lukas-pub-dance-club-61583102257665/",
+      "status": "active"
+    },
+    {
+      "platform": "Instagram",
+      "label": "Instagram",
+      "url": "",
+      "status": "todo"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "hasFullMenuAsset": false,
+  "sections": [
+    {
+      "category": "Koktajle",
+      "items": [
+        {
+          "name": "Aperol Spritz",
+          "price": "29 PLN"
+        },
+        {
+          "name": "Mojito",
+          "price": "27 PLN"
+        },
+        {
+          "name": "Whisky Sour",
+          "price": "28 PLN"
+        }
+      ]
+    },
+    {
+      "category": "Shoty i klasyki",
+      "items": [
+        {
+          "name": "B52",
+          "price": "16 PLN"
+        },
+        {
+          "name": "Kamikaze (4)",
+          "price": "28 PLN"
+        },
+        {
+          "name": "Jack Daniels",
+          "price": "22 PLN / shot"
+        }
+      ]
+    },
+    {
+      "category": "Piwo i napoje",
+      "items": [
+        {
+          "name": "Heineken",
+          "price": "14 PLN"
+        },
+        {
+          "name": "Red Bull",
+          "price": "14 PLN"
+        },
+        {
+          "name": "Coca Cola",
+          "price": "9 PLN"
+        }
+      ]
+    },
+    {
+      "category": "Na stolik",
+      "items": [
+        {
+          "name": "Nachosy z sosem serowym",
+          "price": "20 PLN"
+        },
+        {
+          "name": "Stripsy z kurczaka + frytki",
+          "price": "30 PLN"
+        },
+        {
+          "name": "Deska pyszności",
+          "price": "65 PLN"
+        }
+      ]
+    }
+  ],
+  "source": "Wybrane pozycje pochodzą z istniejącego pliku menu.json w repo."
+}
