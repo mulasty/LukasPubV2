@@ -35,18 +35,18 @@ export function ContactSection({
 
         <div className="mt-8 grid gap-4">
           <div className="glass-card rounded-[1.85rem] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200">Adres</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Adres</p>
             <p className="mt-4 text-lg font-semibold text-white">{addressLine1}</p>
             <p className="text-sm text-white/72">{addressLine2}</p>
           </div>
           <div className="glass-card rounded-[1.85rem] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-fuchsia-300">Telefon</p>
-            <a href={phoneHref} className="mt-4 inline-flex text-lg font-semibold text-white hover:text-cyan-200">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Telefon</p>
+            <a href={phoneHref} className="mt-4 inline-flex text-lg font-semibold text-white hover:text-gold-300">
               {phoneDisplay}
             </a>
           </div>
           <div className="glass-card rounded-[1.85rem] p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-violet-300">Godziny</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Godziny</p>
             <div className="mt-4 space-y-3">
               {schedule.map((item) => (
                 <div key={item.day} className="flex items-center justify-between gap-4 border-b border-white/8 pb-3 last:border-b-0 last:pb-0">

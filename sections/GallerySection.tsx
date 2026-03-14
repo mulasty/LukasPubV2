@@ -30,7 +30,7 @@ export function GallerySection({ items }: GallerySectionProps) {
             key={`${item.src}-${index}`}
             data-card
             data-glow
-            className={`group poster-card neon-frame relative overflow-hidden rounded-[2rem] border border-white/10 ${
+            className={`group relative overflow-hidden rounded-[2rem] border border-white/10 ${
               item.highlight ? "sm:col-span-2 xl:row-span-2 min-h-[340px] xl:min-h-[560px]" : "min-h-[220px] xl:min-h-[270px]"
             }`}
           >

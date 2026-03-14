@@ -30,8 +30,8 @@ export function UpcomingEventsSection({ events }: UpcomingEventsSectionProps) {
       <div className="grid gap-4" data-reveal>
         <div className="grid gap-4 sm:grid-cols-3">
           {events.map((event) => (
-            <div key={event.day} data-card className="glass-card poster-card rounded-[1.75rem] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-cyan-200">{event.day}</p>
+            <div key={event.day} data-card className="glass-card rounded-[1.75rem] p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-gold-300">{event.day}</p>
               <p className="mt-4 font-display text-3xl uppercase text-white">{event.title}</p>
               <p className="mt-3 text-sm text-white/72">{event.time}</p>
             </div>

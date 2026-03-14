@@ -1,15 +1,5 @@
 import { RefObject, useEffect, useLayoutEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import {
-  blurTransition,
-  buildSectionProgress,
-  fadeUp,
-  floatingMotion,
-  neonGlow,
-  staggerCards,
-  textReveal,
-  zoomParallax
-} from "@/lib/animation-utils";
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -43,31 +33,85 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
 
     const ctx = gsap.context(() => {
       const revealTargets = gsap.utils.toArray<HTMLElement>("[data-reveal]");
-      revealTargets.forEach((element) => {
-        fadeUp(element, { trigger: element, reduceMotion });
+      revealTargets.forEach((element, index) => {
+        gsap.fromTo(
+          element,
+          { autoAlpha: 0, y: reduceMotion ? 24 : 64 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: index * 0.02,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%",
+              once: true
+            }
+          }
+        );
       });
 
       const splitTargets = gsap.utils.toArray<HTMLElement>("[data-split]");
       splitTargets.forEach((element) => {
         const words = element.querySelectorAll<HTMLElement>("[data-word]");
-        textReveal(words, { trigger: element, reduceMotion });
+        gsap.fromTo(
+          words,
+          { yPercent: 110, autoAlpha: 0 },
+          {
+            yPercent: 0,
+            autoAlpha: 1,
+            duration: 1.1,
+            ease: "power4.out",
+            stagger: reduceMotion ? 0.01 : 0.035,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 88%",
+              once: true
+            }
+          }
+        );
       });
 
       const parallaxItems = gsap.utils.toArray<HTMLElement>("[data-parallax]");
       parallaxItems.forEach((element) => {
         const speed = Number(element.dataset.speed ?? 0.18);
         const trigger = element.closest<HTMLElement>("[data-scene]") ?? element;
-        zoomParallax(element, trigger, speed, reduceMotion);
+
+        gsap.fromTo(
+          element,
+          { yPercent: speed * -28 },
+          {
+            yPercent: speed * 28,
+            ease: "none",
+            scrollTrigger: {
+              trigger,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: reduceMotion ? false : 0.9
+            }
+          }
+        );
       });
 
       const glowItems = gsap.utils.toArray<HTMLElement>("[data-glow]");
-      glowItems.forEach((element) => {
-        neonGlow(element, element);
-      });
-
-      const blurItems = gsap.utils.toArray<HTMLElement>("[data-blur-reveal]");
-      blurItems.forEach((element) => {
-        blurTransition(element, element, reduceMotion);
+      glowItems.forEach((element, index) => {
+        gsap.fromTo(
+          element,
+          { autoAlpha: 0.2, scale: 0.92 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 1.3,
+            ease: "power2.out",
+            delay: index * 0.04,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 86%",
+              once: true
+            }
+          }
+        );
       });
 
       const hero = root.querySelector<HTMLElement>("[data-hero]");
@@ -116,39 +160,10 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
       if (!reduceMotion) {
         const floaters = gsap.utils.toArray<HTMLElement>("[data-float]");
         floaters.forEach((element, index) => {
-          floatingMotion(element, index);
-        });
-
-        const beams = gsap.utils.toArray<HTMLElement>("[data-beam]");
-        beams.forEach((beam, index) => {
-          gsap.to(beam, {
-            xPercent: index % 2 === 0 ? 6 : -6,
-            opacity: index % 2 === 0 ? 0.88 : 0.56,
-            duration: 5 + index,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-          });
-        });
-
-        const soundWaves = gsap.utils.toArray<HTMLElement>("[data-sound-wave]");
-        soundWaves.forEach((wave, index) => {
-          gsap.to(wave, {
-            scaleY: index % 2 === 0 ? 1.65 : 1.25,
-            opacity: 0.92,
-            duration: 0.8 + index * 0.08,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-          });
-        });
-
-        const lightPulseSections = gsap.utils.toArray<HTMLElement>("[data-light-pulse]");
-        lightPulseSections.forEach((section) => {
-          gsap.to(section, {
-            opacity: 0.9,
-            scale: 1.04,
-            duration: 2.6,
+          gsap.to(element, {
+            y: index % 2 === 0 ? -16 : 16,
+            x: index % 3 === 0 ? 8 : -8,
+            duration: 3 + index * 0.4,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
@@ -199,12 +214,42 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
 
       mm.add("(max-width: 1023px)", () => {
         const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
-        staggerCards(cards, reduceMotion);
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 40, scale: 0.96 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 88%",
+                once: true
+              }
+            }
+          );
+        });
       });
 
       const progress = root.querySelector<HTMLElement>("[data-page-progress]");
       if (progress) {
-        buildSectionProgress(progress, root);
+        gsap.fromTo(
+          progress,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: true
+            }
+          }
+        );
       }
     }, root);
 
