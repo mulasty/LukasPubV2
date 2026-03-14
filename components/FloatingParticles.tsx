@@ -20,7 +20,7 @@ export function FloatingParticles({ className = "" }: FloatingParticlesProps) {
           data-float
           data-parallax
           data-speed={particle.speed}
-          className={`absolute ${particle.top} ${particle.left} ${particle.size} rounded-full bg-gold-300/60 blur-[1px]`}
+          className={`absolute ${particle.top} ${particle.left} ${particle.size} rounded-full ${index % 2 === 0 ? "bg-cyan-300/60" : "bg-fuchsia-400/55"} blur-[1px]`}
         />
       ))}
     </div>

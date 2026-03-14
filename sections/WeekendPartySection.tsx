@@ -40,7 +40,7 @@ export function WeekendPartySection({ events, menuSections }: WeekendPartySectio
           {events.map((event) => (
             <article key={event.day} data-card className="glass-card rounded-[2rem] p-6">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-gold-300/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">
+                <span className="rounded-full border border-cyan-300/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200">
                   {event.day}
                 </span>
                 <span className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">{event.time}</span>
@@ -53,7 +53,7 @@ export function WeekendPartySection({ events, menuSections }: WeekendPartySectio
       </div>
 
       <div className="relative order-1 min-h-[560px] lg:order-2" data-reveal>
-        <div data-parallax data-speed="-0.14" className="absolute left-[5%] top-[8%] h-48 w-48 rounded-full bg-ruby-500/18 blur-3xl" />
+        <div data-parallax data-speed="-0.14" className="absolute left-[5%] top-[8%] h-48 w-48 rounded-full bg-fuchsia-500/18 blur-3xl" />
         <div className="absolute right-[2%] top-0 h-[58%] w-[86%] overflow-hidden rounded-[2.2rem] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.35)]">
           <Image src="/images/weekend-party.jpg" alt="Weekend party w klubie" fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-night-950/80 via-transparent to-transparent" />
@@ -64,18 +64,18 @@ export function WeekendPartySection({ events, menuSections }: WeekendPartySectio
           className="absolute bottom-[2%] left-0 w-[78%] overflow-hidden rounded-[2rem] border border-white/10 bg-night-950/75 p-6 backdrop-blur"
         >
           <div className="mb-5 flex items-center justify-between gap-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Bar preview</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200">Bar preview</p>
             <span className="text-xs uppercase tracking-[0.22em] text-white/55">Data-driven</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {menuSections.slice(0, 2).map((section) => (
               <div key={section.category} className="rounded-[1.5rem] border border-white/8 bg-white/5 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-300">{section.category}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-fuchsia-300">{section.category}</p>
                 <div className="mt-4 space-y-3">
                   {section.items.slice(0, 3).map((item) => (
                     <div key={item.name} className="flex items-start justify-between gap-3 text-sm">
                       <span className="text-white/84">{item.name}</span>
-                      <span className="text-gold-300">{item.price}</span>
+                      <span className="text-cyan-200">{item.price}</span>
                     </div>
                   ))}
                 </div>

@@ -15,7 +15,7 @@ export function AboutSection({ description, highlights }: AboutSectionProps) {
       sceneClassName="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center"
     >
       <div className="relative" data-reveal>
-        <div data-parallax data-speed="-0.18" className="absolute -left-12 top-0 h-44 w-44 rounded-full bg-ruby-500/18 blur-3xl" />
+        <div data-parallax data-speed="-0.18" className="absolute -left-12 top-0 h-44 w-44 rounded-full bg-fuchsia-500/18 blur-3xl" />
         <div className="glass-card relative overflow-hidden rounded-[2.25rem] p-6 sm:p-8">
           <p className="section-kicker">Atmosfera</p>
           <AnimatedText
@@ -39,7 +39,7 @@ export function AboutSection({ description, highlights }: AboutSectionProps) {
         <div
           data-parallax
           data-speed="0.14"
-          className="absolute inset-y-[8%] -right-10 w-40 rounded-full bg-gold-400/15 blur-3xl"
+          className="absolute inset-y-[8%] -right-10 w-40 rounded-full bg-cyan-300/15 blur-3xl"
         />
         <div className="absolute inset-0 rotate-[-4deg] overflow-hidden rounded-[2rem] border border-white/10">
           <Image
@@ -58,7 +58,7 @@ export function AboutSection({ description, highlights }: AboutSectionProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-gold-300">Night sequence</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200">Night sequence</p>
             <p className="mt-3 max-w-sm text-sm leading-7 text-white/82">
               Wieczór przechodzi tu płynnie od stołu i rozmowy do karaoke, tańca i późniejszego wejścia na parkiet.
             </p>

@@ -15,8 +15,8 @@ type WeeklyEventsSectionProps = {
 export function WeeklyEventsSection({ events }: WeeklyEventsSectionProps) {
   return (
     <section data-scene data-horizontal-section className="relative py-20 lg:py-0">
-      <div data-parallax data-speed="-0.12" className="absolute left-[8%] top-20 h-64 w-64 rounded-full bg-ruby-500/16 blur-3xl" />
-      <div data-parallax data-speed="0.18" className="absolute bottom-16 right-[8%] h-72 w-72 rounded-full bg-gold-400/12 blur-3xl" />
+      <div data-parallax data-speed="-0.12" className="absolute left-[8%] top-20 h-64 w-64 rounded-full bg-fuchsia-500/16 blur-3xl" />
+      <div data-parallax data-speed="0.18" className="absolute bottom-16 right-[8%] h-72 w-72 rounded-full bg-cyan-300/12 blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-8">
         <div className="mb-8 max-w-2xl lg:mb-12" data-reveal>
           <p className="section-kicker">Weekly events</p>
@@ -39,7 +39,7 @@ export function WeeklyEventsSection({ events }: WeeklyEventsSectionProps) {
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.36em] text-gold-300">{event.day}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-200">{event.day}</p>
                   <h3 className="mt-4 font-display text-4xl uppercase text-white sm:text-5xl">{event.title}</h3>
                 </div>
                 <span className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
@@ -48,7 +48,7 @@ export function WeeklyEventsSection({ events }: WeeklyEventsSectionProps) {
               </div>
               <p className="mt-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/78">{event.time}</p>
               <p className="mt-6 max-w-md text-sm leading-7 text-smoke">{event.description}</p>
-              <div className="mt-10 h-px bg-gradient-to-r from-gold-300/60 via-white/10 to-transparent" />
+              <div className="mt-10 h-px bg-gradient-to-r from-cyan-300/60 via-fuchsia-400/20 to-transparent" />
             </article>
           ))}
         </div>

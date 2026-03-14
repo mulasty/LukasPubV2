@@ -9,13 +9,17 @@ import seo from "@/data/seo.json";
 import socials from "@/data/socials.json";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
+import { NightclubScene } from "@/components/scene/NightclubScene";
 import { useScrollStory } from "@/hooks/useScrollStory";
 import { AboutSection } from "@/sections/AboutSection";
 import { ContactSection } from "@/sections/ContactSection";
+import { DjBoothSection } from "@/sections/DjBoothSection";
 import { Footer } from "@/sections/Footer";
 import { GallerySection } from "@/sections/GallerySection";
 import { HeroSection } from "@/sections/HeroSection";
 import { KaraokeHighlightSection } from "@/sections/KaraokeHighlightSection";
+import { LightShowSection } from "@/sections/LightShowSection";
+import { MusicEnergySection } from "@/sections/MusicEnergySection";
 import { ReservationSection } from "@/sections/ReservationSection";
 import { SocialMediaSection } from "@/sections/SocialMediaSection";
 import { UpcomingEventsSection } from "@/sections/UpcomingEventsSection";
@@ -126,7 +130,8 @@ export default function HomePage() {
       <SmoothScroll />
 
       <main ref={rootRef} className="story-shell overflow-hidden">
-        <div data-page-progress className="fixed left-0 right-0 top-0 z-[70] h-px origin-left bg-gradient-to-r from-gold-300 via-white to-ruby-500" />
+        <NightclubScene />
+        <div data-page-progress className="fixed left-0 right-0 top-0 z-[70] h-px origin-left bg-gradient-to-r from-cyan-300 via-white to-fuchsia-400" />
         <HeroSection
           name={business.displayName}
           slogan={business.heroSlogan}
@@ -136,6 +141,9 @@ export default function HomePage() {
           posterImage={business.heroMedia.posterImage}
         />
         <AboutSection description={business.about.description} highlights={business.about.highlights} />
+        <LightShowSection />
+        <MusicEnergySection />
+        <DjBoothSection phoneHref={phoneHref} />
         <WeeklyEventsSection events={events.items} />
         <KaraokeHighlightSection
           title={events.items[0]?.title ?? "Karaoke Night"}

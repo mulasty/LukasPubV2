@@ -1,5 +1,14 @@
 import { RefObject, useEffect, useLayoutEffect } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import {
+  fadeUp,
+  floatingMotion,
+  lightPulse,
+  neonGlow,
+  staggerCards,
+  textReveal,
+  zoomParallax
+} from "@/lib/animation-utils";
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -34,84 +43,25 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
     const ctx = gsap.context(() => {
       const revealTargets = gsap.utils.toArray<HTMLElement>("[data-reveal]");
       revealTargets.forEach((element, index) => {
-        gsap.fromTo(
-          element,
-          { autoAlpha: 0, y: reduceMotion ? 24 : 64 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            delay: index * 0.02,
-            scrollTrigger: {
-              trigger: element,
-              start: "top 85%",
-              once: true
-            }
-          }
-        );
+        fadeUp(element, { trigger: element, reduceMotion }, index * 0.02);
       });
 
       const splitTargets = gsap.utils.toArray<HTMLElement>("[data-split]");
       splitTargets.forEach((element) => {
         const words = element.querySelectorAll<HTMLElement>("[data-word]");
-        gsap.fromTo(
-          words,
-          { yPercent: 110, autoAlpha: 0 },
-          {
-            yPercent: 0,
-            autoAlpha: 1,
-            duration: 1.1,
-            ease: "power4.out",
-            stagger: reduceMotion ? 0.01 : 0.035,
-            scrollTrigger: {
-              trigger: element,
-              start: "top 88%",
-              once: true
-            }
-          }
-        );
+        textReveal(words, { trigger: element, reduceMotion });
       });
 
       const parallaxItems = gsap.utils.toArray<HTMLElement>("[data-parallax]");
       parallaxItems.forEach((element) => {
         const speed = Number(element.dataset.speed ?? 0.18);
         const trigger = element.closest<HTMLElement>("[data-scene]") ?? element;
-
-        gsap.fromTo(
-          element,
-          { yPercent: speed * -28 },
-          {
-            yPercent: speed * 28,
-            ease: "none",
-            scrollTrigger: {
-              trigger,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: reduceMotion ? false : 0.9
-            }
-          }
-        );
+        zoomParallax(element, trigger, speed, reduceMotion);
       });
 
       const glowItems = gsap.utils.toArray<HTMLElement>("[data-glow]");
       glowItems.forEach((element, index) => {
-        gsap.fromTo(
-          element,
-          { autoAlpha: 0.2, scale: 0.92 },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 1.3,
-            ease: "power2.out",
-            delay: index * 0.04,
-            scrollTrigger: {
-              trigger: element,
-              start: "top 86%",
-              once: true
-            }
-          }
-        );
+        neonGlow(element, element, index * 0.04);
       });
 
       const hero = root.querySelector<HTMLElement>("[data-hero]");
@@ -160,13 +110,24 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
       if (!reduceMotion) {
         const floaters = gsap.utils.toArray<HTMLElement>("[data-float]");
         floaters.forEach((element, index) => {
-          gsap.to(element, {
-            y: index % 2 === 0 ? -16 : 16,
-            x: index % 3 === 0 ? 8 : -8,
-            duration: 3 + index * 0.4,
+          floatingMotion(element, index);
+        });
+
+        const pulseLights = gsap.utils.toArray<HTMLElement>("[data-pulse-light]");
+        pulseLights.forEach((element, index) => {
+          lightPulse(element, index % 4 === 0 ? 1 : 0.72);
+        });
+
+        const beatBars = gsap.utils.toArray<HTMLElement>("[data-beat-bar]");
+        beatBars.forEach((bar, index) => {
+          gsap.to(bar, {
+            scaleY: index % 4 === 0 ? 1.9 : 1.25 + (index % 3) * 0.18,
+            opacity: index % 4 === 0 ? 1 : 0.78,
+            duration: 0.6 + (index % 3) * 0.08,
             repeat: -1,
             yoyo: true,
-            ease: "sine.inOut"
+            ease: "sine.inOut",
+            delay: index * 0.06
           });
         });
       }
@@ -214,24 +175,7 @@ export function useScrollStory(rootRef: RefObject<HTMLElement>) {
 
       mm.add("(max-width: 1023px)", () => {
         const cards = gsap.utils.toArray<HTMLElement>("[data-card]");
-        cards.forEach((card) => {
-          gsap.fromTo(
-            card,
-            { autoAlpha: 0, y: 40, scale: 0.96 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.9,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 88%",
-                once: true
-              }
-            }
-          );
-        });
+        staggerCards(cards, reduceMotion);
       });
 
       const progress = root.querySelector<HTMLElement>("[data-page-progress]");
