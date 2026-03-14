@@ -18,7 +18,8 @@ export function MusicEnergySection() {
         <BeatPulseLights className="mt-8" />
       </div>
 
-      <div data-glow className="glass-card relative min-h-[24rem] overflow-hidden rounded-[2.25rem] p-6">
+      <div data-glow className="glass-card neon-panel relative min-h-[24rem] overflow-hidden rounded-[2.25rem] p-6">
+        <div className="section-mesh" />
         <div data-pulse-light className="absolute inset-x-[20%] top-[14%] h-28 rounded-full bg-fuchsia-400/20 blur-3xl" />
         <div data-pulse-light className="absolute inset-x-[28%] top-[34%] h-24 rounded-full bg-cyan-300/16 blur-3xl" />
         <div data-pulse-light className="absolute inset-x-[18%] top-[54%] h-24 rounded-full bg-violet-400/18 blur-3xl" />

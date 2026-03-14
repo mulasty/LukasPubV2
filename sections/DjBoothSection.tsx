@@ -8,7 +8,8 @@ type DjBoothSectionProps = {
 export function DjBoothSection({ phoneHref }: DjBoothSectionProps) {
   return (
     <StorySection className="overflow-hidden" sceneClassName="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-      <div data-glow className="glass-card relative min-h-[28rem] overflow-hidden rounded-[2.4rem] p-6">
+      <div data-glow className="glass-card neon-panel relative min-h-[28rem] overflow-hidden rounded-[2.4rem] p-6">
+        <div className="section-mesh" />
         <div data-parallax data-speed="-0.1" className="absolute left-[12%] top-[10%] h-40 w-40 rounded-full bg-fuchsia-500/18 blur-3xl" />
         <div data-parallax data-speed="0.12" className="absolute right-[14%] top-[16%] h-48 w-48 rounded-full bg-cyan-300/16 blur-3xl" />
         <div data-pulse-light className="absolute inset-x-[24%] top-[16%] h-24 rounded-full bg-white/10 blur-3xl" />

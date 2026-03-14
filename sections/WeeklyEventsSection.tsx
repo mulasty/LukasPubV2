@@ -28,6 +28,7 @@ export function WeeklyEventsSection({ events }: WeeklyEventsSectionProps) {
           <p className="mt-5 text-sm leading-7 text-smoke sm:text-base">
             Na desktopie sekcja przesuwa się horyzontalnie, żeby poczuć zmianę tempa między karaoke, dance party i najmocniejszą sobotą.
           </p>
+          <div className="accent-line mt-8 max-w-lg" />
         </div>
 
         <div data-horizontal-track className="flex gap-5 lg:w-max lg:pb-0">
@@ -35,8 +36,9 @@ export function WeeklyEventsSection({ events }: WeeklyEventsSectionProps) {
             <article
               key={event.day}
               data-card
-              className="glass-card event-card w-full min-w-0 rounded-[2rem] p-6 sm:p-7 lg:w-[36rem] lg:flex-none"
+              className="glass-card neon-panel event-card poster-card w-full min-w-0 rounded-[2rem] p-6 sm:p-7 lg:w-[36rem] lg:flex-none"
             >
+              <div className="section-mesh" />
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-200">{event.day}</p>

@@ -24,6 +24,7 @@ export function HeroSection({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [videoEnabled, setVideoEnabled] = useState(heroVideos.length > 0);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -31,7 +32,18 @@ export function HeroSection({
     }
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setVideoEnabled(!prefersReducedMotion && heroVideos.length > 0);
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const saveData =
+      "connection" in navigator &&
+      Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+    const lowCpu = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+    const lowMemory =
+      "deviceMemory" in navigator &&
+      typeof (navigator as Navigator & { deviceMemory?: number }).deviceMemory === "number" &&
+      ((navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8) <= 4;
+
+    setHasMounted(true);
+    setVideoEnabled(!prefersReducedMotion && !saveData && !coarsePointer && !lowCpu && !lowMemory && heroVideos.length > 0);
   }, [heroVideos.length]);
 
   useEffect(() => {
@@ -45,6 +57,34 @@ export function HeroSection({
         setVideoEnabled(false);
       });
     }
+  }, [activeVideoIndex, videoEnabled]);
+
+  useEffect(() => {
+    if (!videoEnabled || !videoRef.current) {
+      return;
+    }
+
+    const element = videoRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          void element.play().catch(() => setVideoEnabled(false));
+        } else {
+          element.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
   }, [activeVideoIndex, videoEnabled]);
 
   const handleVideoEnded = () => {
@@ -147,12 +187,18 @@ export function HeroSection({
                       type="button"
                       aria-label={`Przelacz film hero ${index + 1}`}
                       onClick={() => setActiveVideoIndex(index)}
-                      className={`h-2.5 rounded-full transition-all ${
-                        index === activeVideoIndex ? "w-10 bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.45)]" : "w-2.5 bg-white/35 hover:bg-white/60"
+                      data-active={index === activeVideoIndex}
+                      className={`hero-control h-2.5 rounded-full border border-white/10 transition-all ${
+                        index === activeVideoIndex ? "w-10 bg-cyan-300/15 shadow-[0_0_16px_rgba(34,211,238,0.45)]" : "w-2.5 bg-white/20 hover:bg-white/40"
                       }`}
                     />
                   ))}
                 </div>
+              ) : null}
+              {hasMounted && !videoEnabled ? (
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">
+                  Static mode for smoother playback
+                </p>
               ) : null}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="#rezerwacja" className="cta-primary">
@@ -178,15 +224,15 @@ export function HeroSection({
                 <span className="rounded-full border border-fuchsia-400/25 px-3 py-1 text-xs text-white/80">Weekly pulse</span>
               </div>
               <div className="grid grid-cols-3 gap-3 text-sm">
-                <div className="rounded-3xl border border-white/8 bg-white/5 p-4">
+                <div className="club-chip rounded-3xl p-4">
                   <p className="text-cyan-200">Czw</p>
                   <p className="mt-3 font-semibold text-white">Karaoke</p>
                 </div>
-                <div className="rounded-3xl border border-white/8 bg-white/5 p-4">
+                <div className="club-chip rounded-3xl p-4">
                   <p className="text-fuchsia-300">Pt</p>
                   <p className="mt-3 font-semibold text-white">Dance</p>
                 </div>
-                <div className="rounded-3xl border border-white/8 bg-white/5 p-4">
+                <div className="club-chip rounded-3xl p-4">
                   <p className="text-violet-300">Sob</p>
                   <p className="mt-3 font-semibold text-white">Club</p>
                 </div>
@@ -196,8 +242,8 @@ export function HeroSection({
             <div data-glow className="glass-card max-w-md rounded-[2rem] p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-200">Adres i rezerwacje</p>
               <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-white/82">
-                <span className="rounded-full border border-white/10 px-3 py-2">Al. Legionów 60B</span>
-                <span className="rounded-full border border-white/10 px-3 py-2">694 760 743</span>
+                <span className="club-chip rounded-full px-3 py-2">Al. Legionów 60B</span>
+                <span className="club-chip rounded-full px-3 py-2">694 760 743</span>
               </div>
             </div>
           </div>

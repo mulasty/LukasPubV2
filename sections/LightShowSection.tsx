@@ -22,7 +22,8 @@ export function LightShowSection() {
           </p>
         </div>
 
-        <div data-glow className="glass-card relative min-h-[26rem] overflow-hidden rounded-[2.25rem] p-6">
+        <div data-glow className="glass-card neon-panel relative min-h-[26rem] overflow-hidden rounded-[2.25rem] p-6">
+          <div className="section-mesh" />
           <div data-pulse-light className="absolute left-[16%] top-[20%] h-24 w-24 rounded-full bg-fuchsia-400/28 blur-3xl" />
           <div data-pulse-light className="absolute right-[14%] top-[14%] h-28 w-28 rounded-full bg-cyan-300/24 blur-3xl" />
           <div data-pulse-light className="absolute bottom-[18%] left-[34%] h-20 w-20 rounded-full bg-violet-400/20 blur-3xl" />
